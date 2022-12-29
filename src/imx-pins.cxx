@@ -85,6 +85,9 @@ void Gui::treecb(Fl_Widget* w, void* data) {
         }
     }
     std::cout << "Reg: " << reg << std::endl;
+    std::stringstream ss;
+    ss << "0x" << std::hex << reg;
+    gui->outbox->value(ss.str().c_str());
 
 }
 
