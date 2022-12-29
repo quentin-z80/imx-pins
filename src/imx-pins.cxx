@@ -54,7 +54,7 @@ void Gui::loadsoc(Fl_Widget *w, void *data)
     Fl_Button_Tree_Item *root = new Fl_Button_Tree_Item(gui->pinopts, "ROOT", BUT_NONE);
     Fl_Button_Tree_Item *parent;
     gui->pinopts->root(root);
-    std::cout << *ps << std::endl;
+    std::cout << "Loading SOC: " << ps->name() << "..." << std::endl;
 
     gui->outbox->value("0x0");
     gui->pinopts->begin();
@@ -86,8 +86,6 @@ void Gui::treecb(Fl_Widget *w, void *data)
     // PadCtlValue* pcv = (PadCtlValue*) item->user_data();
     int reg = 0;
 
-    std::cout << "Reason: " << gui->pinopts->callback_reason() << std::endl;
-
     for (Fl_Button_Tree_Item *i = (Fl_Button_Tree_Item *)gui->pinopts->first(); i; i = (Fl_Button_Tree_Item *)gui->pinopts->next(i))
     {
         if (i->user_data() == nullptr)
@@ -100,7 +98,6 @@ void Gui::treecb(Fl_Widget *w, void *data)
             PinSettings::apply(pcv, reg);
         }
     }
-    std::cout << "Reg: " << reg << std::endl;
     std::stringstream ss;
     ss << "0x" << std::hex << reg;
     gui->outbox->value(ss.str().c_str());
@@ -110,7 +107,7 @@ void Gui::outboxcb(Fl_Widget *w, void *data)
 {
     Gui *gui = (Gui *)data;
     int value = PinSettings::parseValue(gui->outbox->value());
-    std::cout << "Outbox: " << value << std::endl;
+    std::cout << "Setting tree items with value: " << value << std::endl;
     for (Fl_Button_Tree_Item *i = (Fl_Button_Tree_Item *)gui->pinopts->first(); i; i = (Fl_Button_Tree_Item *)gui->pinopts->next(i))
     {
         if (i->user_data() == nullptr)
@@ -118,7 +115,6 @@ void Gui::outboxcb(Fl_Widget *w, void *data)
             continue;
         }
         PadCtlValue *pcv = (PadCtlValue *)i->user_data();
-        std::cout << "Checking " << pcv->name << std::endl;
         i->value(PinSettings::check(pcv, value));
     }
 }
@@ -128,12 +124,9 @@ int main(int argc, char **argv)
     fs::path p = argv[0];
     fs::path pindir = p.parent_path() / ".." / "share" / "imx-pins" / "pinsettings";
     std::vector<PinSettings*> pinsettings_vec;
-    for (const auto &entry : fs::directory_iterator(pindir))
+    std::cout << "Loading PinSettings..." << std::endl;
+    for (const auto &entry : fs::directory_iterator(pindir)) {
         pinsettings_vec.push_back(new PinSettings(entry.path()));
-
-    for (PinSettings *ps : pinsettings_vec)
-    {
-        std::cout << *ps << std::endl;
     }
 
     Gui gui(400, 400, "imx-pins", pinsettings_vec);

@@ -41,22 +41,10 @@ Fl_Button_Tree_Item::Fl_Button_Tree_Item(Fl_Button_Tree* tree, const char* l, Bu
         break;
     }
     button->clear();
-    button->callback(but_cb, this);
 }
 
 Fl_Button_Tree_Item::~Fl_Button_Tree_Item() {
     delete button;
-}
-
-void Fl_Button_Tree_Item::but_cb(Fl_Widget* w, void* data) {
-    Fl_Button_Tree_Item* item = (Fl_Button_Tree_Item*) data;
-    int val = item->button->value();
-    std::cout << "button callback: " << val << std::endl;
-    item->tree()->deselect_all();
-    item->select();
-    item->tree()->redraw();
-    item->tree()->callback_item(item);
-    //item->tree()->do_callback();
 }
 
 int Fl_Button_Tree_Item::draw_item_content(int render) {
