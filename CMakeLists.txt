@@ -20,3 +20,6 @@ add_custom_target(copy_pinsettings ALL
         COMMENT "Copying pinsettings into binary directory")
 
 add_dependencies(${PROJECT_NAME} copy_pinsettings)
+
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+install(DIRECTORY ${PROJECT_BINARY_DIR}/share/${PROJECT_NAME} DESTINATION share)

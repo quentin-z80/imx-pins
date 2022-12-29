@@ -6,6 +6,13 @@
 #include "Fl_Button_Tree_Item.hxx"
 #include "PinSettings.hxx"
 
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <limits.h>
+#include <unistd.h>
+#endif
+
 #include <FL/Fl.H>
 #include <FL/Fl_Double_Window.H>
 #include <FL/Fl_Choice.H>
@@ -121,10 +128,23 @@ void Gui::outboxcb(Fl_Widget *w, void *data)
     }
 }
 
+std::filesystem::path abs_exe_directory() {
+    #if defined(_MSC_VER)
+        wchar_t path[FILENAME_MAX] = { 0 };
+        GetModuleFileNameW(nullptr, path, FILENAME_MAX);
+        return fs::path(path).parent_path().string();
+    #else
+        char path[FILENAME_MAX];
+        ssize_t count = readlink("/proc/self/exe", path, FILENAME_MAX);
+        return fs::path(std::string(path, (count > 0) ? count: 0)).parent_path().string();
+    #endif
+}
+
 int main(int argc, char **argv) {
     int ret;
     fs::path p = argv[0];
-    fs::path pindir = p.parent_path() / ".." / "share" / "imx-pins" / "pinsettings";
+    fs::path pindir = abs_exe_directory() / ".." / "share" / "imx-pins" / "pinsettings";
+    std::cout << "PinSettings directory: " << pindir << " " << std::endl;
     std::vector<PinSettings*> pinsettings_vec;
     std::cout << "Loading PinSettings..." << std::endl;
     for (const auto &entry : fs::directory_iterator(pindir)) {

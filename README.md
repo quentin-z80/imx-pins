@@ -21,6 +21,12 @@ make
 
 Run with `./bin/imx-pins`
 
+## Installing
+
+```
+sudo make install
+```
+
 ## Adding support for a new soc
 
 Simply create a JSON file in pinsettings/ using values from the IOMUX section of the processors reference manual.
