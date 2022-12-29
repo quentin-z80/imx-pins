@@ -21,7 +21,7 @@ int Fl_Button_Tree::handle(int event) {
         && Fl::event_x() > item->label_x()
         && Fl::event_x() < item->label_x() + item->label_w()) {
             std::cout << "clicked" << std::endl;
-            item->set();
+            item->toggle();
             ret = Fl_Tree::handle(event);
             callback_item(item);
             do_callback();

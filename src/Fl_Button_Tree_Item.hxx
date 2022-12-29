@@ -26,14 +26,32 @@ public:
 
     int draw_item_content(int render);
 
-    void set();
+    void toggle();
 
     int value();
 
-    void deset();
+    void value(int val);
 
-    void deset_siblings();
+    void clear();
 
+    void clear_siblings();
+
+};
+
+class Fl_Dummy_Round : public Fl_Round_Button {
+    Fl_Button_Tree* tree;
+public:
+    Fl_Dummy_Round(int x, int y, int w, int h, Fl_Button_Tree* tree);
+
+    int handle(int event);
+};
+
+class Fl_Dummy_Check : public Fl_Check_Button {
+    Fl_Button_Tree* tree;
+public:
+    Fl_Dummy_Check(int x, int y, int w, int h, Fl_Button_Tree* tree);
+
+    int handle(int event);
 };
 
 #endif // FL_BUTTON_TREE_ITEM_H

@@ -8,15 +8,31 @@
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Round_Button.H>
 
+Fl_Dummy_Round::Fl_Dummy_Round(int x, int y, int w, int h, Fl_Button_Tree* tree) : Fl_Round_Button(x, y, w, h) {
+    this->tree = tree;
+}
+
+int Fl_Dummy_Round::handle(int event) {
+    return 0;
+}
+
+Fl_Dummy_Check::Fl_Dummy_Check(int x, int y, int w, int h, Fl_Button_Tree* tree) : Fl_Check_Button(x, y, w, h) {
+    this->tree = tree;
+}
+
+int Fl_Dummy_Check::handle(int event) {
+    return 0;
+}
+
 Fl_Button_Tree_Item::Fl_Button_Tree_Item(Fl_Button_Tree* tree, const char* l, ButtonType type) : Fl_Tree_Item(tree) {
     label(l);
     this->type = type;
     switch (type) {
     case BUT_RADIO:
-        button = new Fl_Round_Button(0, 0, 20, 20);
+        button = new Fl_Dummy_Round(0, 0, 20, 20, tree);
         break;
     case BUT_CHECKBOX:
-        button = new Fl_Check_Button(0, 0, 20, 20);
+        button = new Fl_Dummy_Check(0, 0, 20, 20, tree);
         break;
     case BUT_NONE:
         button = nullptr;
@@ -40,7 +56,7 @@ void Fl_Button_Tree_Item::but_cb(Fl_Widget* w, void* data) {
     item->select();
     item->tree()->redraw();
     item->tree()->callback_item(item);
-    item->tree()->do_callback();
+    //item->tree()->do_callback();
 }
 
 int Fl_Button_Tree_Item::draw_item_content(int render) {
@@ -63,12 +79,12 @@ int Fl_Button_Tree_Item::draw_item_content(int render) {
     return X + lw + 20;
 }
 
-void Fl_Button_Tree_Item::set() {
+void Fl_Button_Tree_Item::toggle() {
     switch (type) {
         case BUT_RADIO:
             selected ? button->clear() : button->set();
             selected = !selected;
-            deset_siblings();
+            clear_siblings();
             break;
         case BUT_CHECKBOX:
             selected ? button->clear() : button->set();
@@ -84,18 +100,22 @@ int Fl_Button_Tree_Item::value() {
     return button->value();
 }
 
-void Fl_Button_Tree_Item::deset() {
+void Fl_Button_Tree_Item::value(int val) {
+    button->value(val);
+}
+
+void Fl_Button_Tree_Item::clear() {
     if (type == BUT_NONE) return;
     button->clear();
     selected = false;
 }
 
-void Fl_Button_Tree_Item::deset_siblings() {
+void Fl_Button_Tree_Item::clear_siblings() {
     //iterate over siblings and deselect them
     Fl_Tree_Item* parent = this->parent();
     for (int i = 0; i < parent->children(); i++) {
         if (parent->child(i) != this) {
-            ((Fl_Button_Tree_Item*)parent->child(i))->deset();
+            ((Fl_Button_Tree_Item*)parent->child(i))->clear();
         }
     }
 }
