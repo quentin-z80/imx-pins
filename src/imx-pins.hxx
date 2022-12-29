@@ -7,10 +7,15 @@
 #include "PinSettings.hxx"
 #include "Fl_Button_Tree.hxx"
 
+#include <FL/Fl.H>
 #include <FL/Fl_Widget.H>
 #include <FL/Fl_Choice.H>
 #include <FL/Fl_Input.H>
 #include <FL/Fl_Double_Window.H>
+
+#if FL_ABI_VERSION < 10303
+#error "FLTK ABI version 10303 or later is required"
+#endif // FL_ABI_VERSION
 
 class Gui : public Fl_Double_Window {
     std::vector<PinSettings*> pinsettings_vec;

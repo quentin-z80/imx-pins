@@ -8,7 +8,6 @@
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Round_Button.H>
 
-
 enum ButtonType {BUT_CHECKBOX, BUT_RADIO, BUT_NONE};
 
 class Fl_Button_Tree_Item : public Fl_Tree_Item {
