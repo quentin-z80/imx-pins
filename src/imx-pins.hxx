@@ -25,6 +25,8 @@ public:
     static void loadsoc(Fl_Widget* w, void* data);
 
     static void treecb(Fl_Widget* w, void* data);
+
+    static void outboxcb(Fl_Widget* w, void* data);
 };
 
 int main(int argc, char** argv);

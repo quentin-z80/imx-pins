@@ -74,6 +74,10 @@ void PinSettings::apply(PadCtlValue* pcv, int &reg) {
     reg |= pcv->value << pcv->field->shift;
 }
 
+int PinSettings::check(PadCtlValue* pcv, int reg) {
+    return ((reg & pcv->field->mask) >> pcv->field->shift) == pcv->value;
+}
+
 std::ostream& operator<<(std::ostream& os, const PinSettings& ps) {
         return os << "<PinSettings: " << ps.socname << ">";
 }

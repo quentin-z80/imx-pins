@@ -48,6 +48,8 @@ public:
 
     static void apply(PadCtlValue* pcv, int &reg);
 
+    static int check(PadCtlValue* pcv, int reg);
+
 };
 
 std::ostream& operator<<(std::ostream& os, const PinSettings& ps);
