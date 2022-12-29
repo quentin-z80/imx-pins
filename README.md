@@ -2,9 +2,24 @@
 
 ## About
 
-Generate and decode IOMUX pad settings
+Generate and decode IOMUX pad settings for NXP's i.MX series processors.
+
+Uses [FLTK 1.3](https://www.fltk.org/) and [nlohmann-json](https://json.nlohmann.me/)
 
 ![](usage.png)
+
+## Compiling
+
+Install `cmake`, `fltk-devel` and `json-c++` (Package names may be different for your distro)
+
+```
+mkdir build
+cd build
+cmake ..
+make
+```
+
+Run with `./bin/imx-pins`
 
 ## Adding support for a new soc
 
@@ -14,19 +29,18 @@ Simply create a JSON file in pinsettings/ using values from the IOMUX section of
 {
     "NAME": "SOMESOC",
     "PAD_CTL": {
-        "PAD_CTL_THIS": {
-            "value": 0,
-            "fields": 4
-        },
-        "PAD_CTL_THAT": {
-            "value": 1,
-            "fields": 4
-        }
+        {"fields": "8", "name": "Pull Resistors Enable", "type": "bool"},
+
+        {"fields": "2:0", "name": "Slew Rate", "type": "enum",
+        "values": [
+            {"name": "Slow Slew Rate", "value": "0b000"},
+            {"name": "Fast Slew Rate", "value": "0b101"}
+        ]}
 }
 ```
 
-Where "fields" is an integer representing all the bits that could be set by the group.
+Where "fields" represents the index(es) that all the bits that can be set by the group.
 
-In the above example 4 (0b100) would mean that only the third bit is changed by this option
+In the above example "8" would mean that only the eight bit can be set by this option group.
 
-If "fields" is 6 (0b110) then the second and third bit can be set by this option group
+If "fields" is "2:0" then the bits 2, 1 and 0 can be set by this option group.
