@@ -8,31 +8,15 @@
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Round_Button.H>
 
-Fl_Dummy_Round::Fl_Dummy_Round(int x, int y, int w, int h, Fl_Button_Tree* tree) : Fl_Round_Button(x, y, w, h) {
-    this->tree = tree;
-}
-
-int Fl_Dummy_Round::handle(int event) {
-    return 0;
-}
-
-Fl_Dummy_Check::Fl_Dummy_Check(int x, int y, int w, int h, Fl_Button_Tree* tree) : Fl_Check_Button(x, y, w, h) {
-    this->tree = tree;
-}
-
-int Fl_Dummy_Check::handle(int event) {
-    return 0;
-}
-
 Fl_Button_Tree_Item::Fl_Button_Tree_Item(Fl_Button_Tree* tree, const char* l, ButtonType type) : Fl_Tree_Item(tree) {
     label(l);
     this->type = type;
     switch (type) {
     case BUT_RADIO:
-        button = new Fl_Dummy_Round(0, 0, 20, 20, tree);
+        button = new Fl_Dummy_Round(0, 0, 20, 20);
         break;
     case BUT_CHECKBOX:
-        button = new Fl_Dummy_Check(0, 0, 20, 20, tree);
+        button = new Fl_Dummy_Check(0, 0, 20, 20);
         break;
     case BUT_NONE:
         button = nullptr;

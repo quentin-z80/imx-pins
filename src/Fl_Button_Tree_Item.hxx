@@ -40,17 +40,17 @@ public:
 class Fl_Dummy_Round : public Fl_Round_Button {
     Fl_Button_Tree* tree;
 public:
-    Fl_Dummy_Round(int x, int y, int w, int h, Fl_Button_Tree* tree);
+    Fl_Dummy_Round(int x, int y, int w, int h) : Fl_Round_Button(x, y, w, h) {}
 
-    int handle(int event);
+    int handle(int event) {return 0;}
 };
 
 class Fl_Dummy_Check : public Fl_Check_Button {
     Fl_Button_Tree* tree;
 public:
-    Fl_Dummy_Check(int x, int y, int w, int h, Fl_Button_Tree* tree);
+    Fl_Dummy_Check(int x, int y, int w, int h) : Fl_Check_Button(x, y, w, h) {}
 
-    int handle(int event);
+    int handle(int event) {return 0;}
 };
 
 #endif // FL_BUTTON_TREE_ITEM_H
