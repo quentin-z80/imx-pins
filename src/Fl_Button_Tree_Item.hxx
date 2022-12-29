@@ -11,16 +11,6 @@
 
 enum ButtonType {BUT_CHECKBOX, BUT_RADIO, BUT_NONE};
 
-class Fl_Dummy_Checkbox : public Fl_Check_Button {
-public:
-    Fl_Dummy_Checkbox(int x, int y, int w, int h, const char *l=0) : Fl_Check_Button(x, y, w, h, l) {}
-};
-
-class Fl_Dummy_Radio : public Fl_Round_Button {
-public:
-    Fl_Dummy_Radio(int x, int y, int w, int h, const char *l=0) : Fl_Round_Button(x, y, w, h, l) {}
-};
-
 class Fl_Button_Tree_Item : public Fl_Tree_Item {
 
     Fl_Button* button;
