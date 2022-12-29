@@ -1,0 +1,56 @@
+{
+    "NAME": "i.MX6ULL",
+    "PAD_CTL": [
+
+        {"fields": "16", "name": "Hysteresis", "type": "bool"},
+
+        {"fields": "15:14", "name": "Pull Up \/ Down", "type": "enum",
+        "values": [
+            {"name": "100K Pull Down", "value": "0b00"},
+            {"name": "47K Pull Up", "value": "0b01"},
+            {"name": "100K Pull Up", "value": "0b10"},
+            {"name": "22K Pull Up", "value": "0b11"}
+        ]
+        },
+
+        {"fields": "13", "name": "Pull \/ Keeper Select", "type": "enum",
+        "values": [
+            {"name": "Keeper", "value": "0"},
+            {"name": "Pull", "value": "1"}
+        ]
+        },
+
+        {"fields": "12", "name": "Pull \/ Keeper Enable", "type": "bool"},
+
+        {"fields": "11", "name": "Open Drain Enable", "type": "bool"},
+
+        {"fields": "7:6", "name": "Speed", "type": "enum",
+        "values": [
+            {"name": "Speed 0 50MHz", "value": "0b00"},
+            {"name": "Speed 1 100MHz", "value": "0b01"},
+            {"name": "Speed 2 100MHz", "value": "0b10"},
+            {"name": "Speed 3 200MHz", "value": "0b11"}
+        ]
+        },
+
+        {"fields": "5:3", "name": "Drive Strength", "type": "enum",
+        "values": [
+            {"name": "Output Driver Disabled", "value": "0b000"},
+            {"name": "260R_3.3V, 150R_1.8V", "value": "0b001"},
+            {"name": "130R_3.3V, 75R_1.8V", "value": "0b010"},
+            {"name": "87R_3.3V, 50R_1.8V", "value": "0b011"},
+            {"name": "65R_3.3V, 37R_1.8V", "value": "0b100"},
+            {"name": "52R_3.3V, 30R_1.8V", "value": "0b101"},
+            {"name": "43R_3.3V, 25R_1.8V", "value": "0b110"},
+            {"name": "37R_3.3V, 21R_1.8V", "value": "0b111"}
+        ]
+        },
+
+        {"fields": "0", "name": "Slew Rate", "type": "enum",
+        "values": [
+            {"name": "Slow Slew Rate", "value": "0"},
+            {"name": "Fast Slew Rate", "value": "1"}
+        ]
+        }
+    ]
+}
