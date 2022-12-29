@@ -15,19 +15,19 @@
 
         {"fields": "5", "name": "Open Drain Enable" , "type": "bool"},
 
-        {"fields": "4:3", "name": "Slew Rate", "type": "enum",
+        {"fields": "4", "name": "Slew Rate", "type": "enum",
         "values": [
-            {"name": "Slow", "value": "0b00"},
-            {"name": "Fast", "value": "0b10"}
+            {"name": "Slow", "value": "0b0"},
+            {"name": "Fast", "value": "0b1"}
         ]
         },
 
-        {"fields": "2:0", "name": "Drive Strength", "type": "enum",
+        {"fields": "2:1", "name": "Drive Strength", "type": "enum",
         "values": [
-            {"name": "Drive Strength X1", "value": "0b000"},
-            {"name": "Drive Strength X2", "value": "0b100"},
-            {"name": "Drive Strength X4", "value": "0b010"},
-            {"name": "Drive Strength X6", "value": "0b110"}
+            {"name": "Drive Strength X1", "value": "0b00"},
+            {"name": "Drive Strength X2", "value": "0b10"},
+            {"name": "Drive Strength X4", "value": "0b01"},
+            {"name": "Drive Strength X6", "value": "0b11"}
         ]
         }
     ]
