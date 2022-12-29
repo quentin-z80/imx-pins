@@ -16,7 +16,7 @@
 
 namespace fs = std::filesystem;
 
-Gui::Gui(int w, int h, const char *title, std::vector<PinSettings *> ps) : Fl_Double_Window(w, h, title)
+Gui::Gui(int w, int h, const char *title, std::vector<PinSettings*> ps) : Fl_Double_Window(w, h, title)
 {
     pinsettings_vec = ps;
 
@@ -43,6 +43,8 @@ Gui::~Gui()
 {
     delete socselect;
     delete outbox;
+    delete pinopts;
+    for (PinSettings* ps : pinsettings_vec){delete ps;}
 };
 
 void Gui::loadsoc(Fl_Widget *w, void *data)
@@ -119,8 +121,8 @@ void Gui::outboxcb(Fl_Widget *w, void *data)
     }
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
+    int ret;
     fs::path p = argv[0];
     fs::path pindir = p.parent_path() / ".." / "share" / "imx-pins" / "pinsettings";
     std::vector<PinSettings*> pinsettings_vec;
@@ -129,7 +131,9 @@ int main(int argc, char **argv)
         pinsettings_vec.push_back(new PinSettings(entry.path()));
     }
 
-    Gui gui(400, 400, "imx-pins", pinsettings_vec);
-    gui.show();
-    return Fl::run();
+    Gui* gui = new Gui(400, 400, "imx-pins", pinsettings_vec);
+    gui->show();
+    ret = Fl::run();
+    delete gui;
+    return ret;
 }

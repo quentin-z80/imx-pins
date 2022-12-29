@@ -32,6 +32,8 @@ class PinSettings {
 public:
     PinSettings(std::string fname);
 
+    ~PinSettings();
+
     std::vector<PadCtlField*> getPadCtlFields();
 
     std::string name();

@@ -34,6 +34,15 @@ PinSettings::PinSettings(std::string fname) {
     }
 };
 
+PinSettings::~PinSettings() {
+    for (auto pcf : padctlfields) {
+        for (auto pcv : pcf->values) {
+            delete pcv;
+        }
+        delete pcf;
+    }
+}
+
 std::vector<PadCtlField*> PinSettings::getPadCtlFields() { return padctlfields; };
 
 std::string PinSettings::name() { return socname; };
