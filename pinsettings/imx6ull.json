@@ -2,7 +2,7 @@
     "NAME": "i.MX6ULL",
     "PAD_CTL": [
 
-        {"fields": "16", "name": "Hysteresis", "type": "bool"},
+        {"fields": "16", "name": "Hysteresis Enable", "type": "bool"},
 
         {"fields": "15:14", "name": "Pull Up \/ Down", "type": "enum",
         "values": [
