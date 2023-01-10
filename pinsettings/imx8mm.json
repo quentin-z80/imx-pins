@@ -2,6 +2,8 @@
     "NAME": "i.MX8MM",
     "PAD_CTL": [
 
+        {"fields": "30", "name": "Software Input On", "type": "bool"},
+
         {"fields": "8", "name": "Pull Resistors Enable", "type": "bool"},
 
         {"fields": "7", "name": "Hysteresis Enable", "type": "bool"},

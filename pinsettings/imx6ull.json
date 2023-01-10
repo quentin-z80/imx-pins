@@ -2,6 +2,8 @@
     "NAME": "i.MX6ULL",
     "PAD_CTL": [
 
+        {"fields": "30", "name": "Software Input On", "type": "bool"},
+
         {"fields": "16", "name": "Hysteresis Enable", "type": "bool"},
 
         {"fields": "15:14", "name": "Pull Up \/ Down", "type": "enum",
