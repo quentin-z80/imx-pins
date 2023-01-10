@@ -128,7 +128,7 @@ void Gui::outboxcb(Fl_Widget *w, void *data)
     }
 }
 
-std::filesystem::path abs_exe_directory() {
+fs::path abs_exe_directory() {
     #if defined(_MSC_VER)
         wchar_t path[FILENAME_MAX] = { 0 };
         GetModuleFileNameW(nullptr, path, FILENAME_MAX);
@@ -142,7 +142,6 @@ std::filesystem::path abs_exe_directory() {
 
 int main(int argc, char **argv) {
     int ret;
-    fs::path p = argv[0];
     fs::path pindir = abs_exe_directory() / ".." / "share" / "imx-pins" / "pinsettings";
     std::cout << "PinSettings directory: " << pindir << " " << std::endl;
     std::vector<PinSettings*> pinsettings_vec;
