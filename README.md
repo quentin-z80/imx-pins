@@ -10,13 +10,11 @@ Uses [FLTK 1.3](https://www.fltk.org/) and [nlohmann-json](https://json.nlohmann
 
 ## Compiling
 
-Install `cmake`, `fltk-devel` and `json-c++` (Package names may be different for your distro)
-
 ```
 mkdir build
 cd build
 cmake ..
-make
+cmake --build .
 ```
 
 Run with `./bin/imx-pins`
@@ -24,7 +22,7 @@ Run with `./bin/imx-pins`
 ## Installing
 
 ```
-sudo make install
+sudo cmake --install .
 ```
 
 ## Adding support for a new soc
