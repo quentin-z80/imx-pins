@@ -4,7 +4,7 @@
 
 Generate and decode IOMUX pad settings for NXP's i.MX series processors.
 
-Uses [FLTK 1.3](https://www.fltk.org/) and [nlohmann-json](https://json.nlohmann.me/)
+Uses [FLTK 1.4](https://www.fltk.org/) and [nlohmann-json](https://json.nlohmann.me/)
 
 ![](usage.png)
 
