@@ -25,5 +25,3 @@ add_dependencies(${PROJECT_NAME} copy_pinsettings)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 install(DIRECTORY ${PROJECT_BINARY_DIR}/share/${PROJECT_NAME} DESTINATION share)
-
-
